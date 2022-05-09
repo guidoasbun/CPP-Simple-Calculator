@@ -5,6 +5,9 @@
  * class that acts as the game engine
  * w
  */
+#include <iostream>
+#include <vector>
+#include <sstream>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
@@ -24,14 +27,32 @@ private:
     sf::VideoMode videoMode;
     sf::Event ev;
 
+    //Mouse positions
+    sf::Vector2i mousePosWindow;
+    sf::Vector2f mousePosView;
+
+    //Text
+    sf::Font font;
+    sf::Text uiText;
+
+    //Calculator Logic
+
+
     //Calculator Objects
     sf::RectangleShape display;
     sf::RectangleShape operators;
     sf::RectangleShape numbers;
+    sf::RectangleShape equals;
 
     //Private Functions
     void initVariables();
     void initWindow();
+    void initDisplay();
+    void initFonts();
+    void initDisplayText();
+    void initOperators();
+    void initNumbers();
+    void initEquals();
 public:
     //Constructors / Destructors
     Calculator();
@@ -42,7 +63,13 @@ public:
 
     //Functions
     void pollEvents();
+
+    void updateMousePosition();
+    void updateDisplayText();
     void update();
+
+    void renderDisplayText(sf::RenderTarget& target);
+    void renderDisplay(sf::RenderTarget& target);
     void render();
 };
 
