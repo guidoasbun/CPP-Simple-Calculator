@@ -35,6 +35,7 @@ void Calculator::initDisplayText()
     uiText.setCharacterSize(100);
     uiText.setFillColor(sf::Color::White);
     uiText.setString("NONE");
+    uiText.setPosition(496.f, 20.f);
 }
 
 void Calculator::initDisplay()
@@ -51,6 +52,7 @@ Calculator::Calculator()
     initWindow();
     initDisplayText();
     //Initialize
+    initFonts();
     initDisplay();
 }
 
@@ -84,10 +86,32 @@ void Calculator::pollEvents()
     }
 }
 
+//Update Functions
+void Calculator::updateMousePosition()
+{
+    mousePosWindow = sf::Mouse::getPosition(*window);
+    mousePosView = window->mapPixelToCoords(mousePosWindow);
+}
+
+void Calculator::updateDisplayText()
+{
+    std::stringstream ss;
+
+    ss << "0";
+
+    uiText.setString(ss.str());
+}
 
 void Calculator::update()
 {
     pollEvents();
+    updateDisplayText();
+}
+
+//Render functions
+void Calculator::renderDisplayText(sf::RenderTarget &target)
+{
+    target.draw(uiText);
 }
 
 void Calculator::renderDisplay(sf::RenderTarget& target)
@@ -104,11 +128,15 @@ void Calculator::render()
      * - display frame in window
      * Renders the game objects
      */
+    //Sets window with light grey background
     window->clear(sf::Color(204, 204, 204, 0));
 
     //Draw game objects
 
+
     renderDisplay(*window);
+    renderDisplayText(*window);
+
     window->display();
 }
 
