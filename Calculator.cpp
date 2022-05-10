@@ -64,7 +64,28 @@ void Calculator::initOperators()
 
 void Calculator::initNumbers()
 {
+    float yCoordinate = 180.f;
+    float xCoordinate = 30.f;
 
+    numbers.setSize(sf::Vector2f(120.f, 80.f));
+    numbers.setFillColor(sf::Color(150, 150, 150));
+
+    for (int i = 0; i < 12; ++i)
+    {
+        if (i % 3 == 0)
+        {
+            xCoordinate = 30.f;
+            yCoordinate += 105.f;
+        }
+
+        numbers.setPosition(xCoordinate, yCoordinate);
+        numberButtons.push_back(numbers);
+        if (i == 10)
+        {
+            numbers.setFillColor(sf::Color(190, 38, 38));
+        }
+        xCoordinate += 140.f;
+    }
 }
 
 //Constructors / Destructors
@@ -77,6 +98,7 @@ Calculator::Calculator()
     initFonts();
     initDisplay();
     initOperators();
+    initNumbers();
 }
 
 Calculator::~Calculator()
@@ -164,7 +186,7 @@ void Calculator::render()
 {
 
     //Sets window with light grey background
-    window->clear(sf::Color(204, 204, 204, 0));
+    window->clear(sf::Color(204, 204, 204));
 
     //Draw game objects
 
