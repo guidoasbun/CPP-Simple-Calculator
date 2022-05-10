@@ -41,7 +41,9 @@ private:
     //Calculator Objects
     sf::RectangleShape display;
     sf::RectangleShape operators;
+    std::vector<sf::RectangleShape> operatorButtons;
     sf::RectangleShape numbers;
+    std::vector<sf::RectangleShape> numberButtons;
     sf::RectangleShape equals;
 
     //Private Functions
@@ -70,6 +72,8 @@ public:
 
     void renderDisplayText(sf::RenderTarget& target);
     void renderDisplay(sf::RenderTarget& target);
+    void renderOperators(sf::RenderTarget& target);
+    void renderNumbers(sf::RenderTarget& target);
     void render();
 };
 
