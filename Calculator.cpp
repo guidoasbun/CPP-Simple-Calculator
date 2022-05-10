@@ -88,17 +88,27 @@ void Calculator::initNumbers()
     }
 }
 
+void Calculator::initEquals()
+{
+    float const yCoordinates = 280.f;
+    float const xCoordinates = 450.f;
+    equals.setPosition(xCoordinates, yCoordinates);
+    equals.setSize(sf::Vector2f(120.f, 400.f));
+    equals.setFillColor(sf::Color(50, 161, 50));
+}
+
 //Constructors / Destructors
 Calculator::Calculator()
 {
     initVariables();
     initWindow();
     initDisplayText();
-    //Initialize
+
     initFonts();
     initDisplay();
     initOperators();
     initNumbers();
+    initEquals();
 }
 
 Calculator::~Calculator()
@@ -182,6 +192,11 @@ void Calculator::renderNumbers(sf::RenderTarget &target)
     }
 }
 
+void Calculator::renderEquals(sf::RenderTarget &target)
+{
+    target.draw(equals);
+}
+
 void Calculator::render()
 {
 
@@ -194,6 +209,7 @@ void Calculator::render()
     renderDisplayText(*window);
     renderOperators(*window);
     renderNumbers(*window);
+    renderEquals(*window);
 
     window->display();
 }

@@ -74,6 +74,7 @@ public:
     void renderDisplay(sf::RenderTarget& target);
     void renderOperators(sf::RenderTarget& target);
     void renderNumbers(sf::RenderTarget& target);
+    void renderEquals(sf::RenderTarget& target);
     void render();
 };
 
